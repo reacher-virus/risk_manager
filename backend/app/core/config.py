@@ -97,6 +97,7 @@ SMTP_USER = os.getenv("SMTP_USER", "")
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
 SMTP_SSL = _bool("SMTP_SSL", False)                              # True = implicit TLS (port 465); False = STARTTLS
 MAIL_FROM = os.getenv("MAIL_FROM", "Risk Manager <no-reply@localhost>")
+BREVO_API_KEY = os.getenv("BREVO_API_KEY", "")
 AUTH_CHECK_MX = _bool("AUTH_CHECK_MX", IS_PROD)                  # reject domains that cannot receive mail (needs DNS)
 ALLOWED_EMAIL_DOMAINS = [d.lower() for d in _list("ALLOWED_EMAIL_DOMAINS")]   # optional allowlist, e.g. your company
 
