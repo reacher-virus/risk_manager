@@ -1,0 +1,517 @@
+{
+  "best_model": "random_forest",
+  "calibration": "isotonic",
+  "chosen_threshold": 0.2,
+  "feature_columns": [
+    "amount",
+    "amount_dev_from_avg",
+    "tx_count_last_10min_cust",
+    "tx_count_last_1h_cust",
+    "tx_count_last_24h_cust",
+    "amount_last_24h_cust",
+    "customer_account_age_days",
+    "customer_tx_count_30d",
+    "customer_avg_amount_prior",
+    "customer_historical_fraud_rate",
+    "customer_historical_chargebacks",
+    "customer_return_rate_prior",
+    "device_accounts_24h",
+    "device_cards_24h",
+    "device_tx_count_10min",
+    "device_tx_count_1h",
+    "device_tx_count_30d",
+    "device_historical_fraud_rate",
+    "payment_accounts_count",
+    "payment_tx_count_30d",
+    "payment_historical_chargeback_rate",
+    "is_new_region_for_customer",
+    "category_new_for_customer",
+    "hour_of_day",
+    "graph_component_accounts",
+    "graph_component_devices",
+    "graph_component_payments"
+  ],
+  "feature_importances": {
+    "amount": 0.09129827122147349,
+    "amount_dev_from_avg": 0.1094979478156997,
+    "tx_count_last_10min_cust": 0.0025283815946976077,
+    "tx_count_last_1h_cust": 0.0198257591238548,
+    "tx_count_last_24h_cust": 0.003971308240805707,
+    "amount_last_24h_cust": 0.010759624278336544,
+    "customer_account_age_days": 0.16879917917616402,
+    "customer_tx_count_30d": 0.015130050079997437,
+    "customer_avg_amount_prior": 0.02776470334259899,
+    "customer_historical_fraud_rate": 0.09408419724669605,
+    "customer_historical_chargebacks": 0.0012692643812083886,
+    "customer_return_rate_prior": 0.05555208794700775,
+    "device_accounts_24h": 0.016415932882830726,
+    "device_cards_24h": 0.01776071706900058,
+    "device_tx_count_10min": 0.0206868411474407,
+    "device_tx_count_1h": 0.061902030263432516,
+    "device_tx_count_30d": 0.015003032120883863,
+    "device_historical_fraud_rate": 0.08046447129034774,
+    "payment_accounts_count": 0.007126498594822759,
+    "payment_tx_count_30d": 0.010836125315711693,
+    "payment_historical_chargeback_rate": 0.0018697445029580914,
+    "is_new_region_for_customer": 0.08176564657384625,
+    "category_new_for_customer": 0.00601983493109319,
+    "hour_of_day": 0.006910086608384895,
+    "graph_component_accounts": 0.011964220000162845,
+    "graph_component_devices": 0.02117878980376186,
+    "graph_component_payments": 0.039615254446781864
+  },
+  "val_pr_auc_by_model": {
+    "logistic_regression": 0.8726910424262556,
+    "random_forest": 0.9165096618485872,
+    "xgboost": 0.9000055762769493
+  },
+  "test_metrics_ml": {
+    "precision": 0.739,
+    "recall": 0.9437,
+    "f1": 0.8289,
+    "pr_auc": 0.8507,
+    "roc_auc": 0.9733,
+    "false_positive_rate": 0.0079,
+    "true_positives": 201,
+    "false_positives": 71,
+    "true_negatives": 8928,
+    "false_negatives": 12,
+    "brier_uncalibrated": 0.00956,
+    "brier_calibrated": 0.00485
+  },
+  "test_cost_ml": {
+    "fp": 71,
+    "fn": 12,
+    "cost_fp_total": 10650,
+    "cost_fn_total": 30000,
+    "total_cost": 40650
+  },
+  "test_metrics_rule_baseline": {
+    "precision": 0.4412,
+    "recall": 0.4225,
+    "f1": 0.4317,
+    "pr_auc": 0.2766,
+    "roc_auc": 0.7539,
+    "false_positive_rate": 0.0127,
+    "true_positives": 90,
+    "false_positives": 114,
+    "true_negatives": 8885,
+    "false_negatives": 123
+  },
+  "test_cost_rule_baseline": {
+    "fp": 114,
+    "fn": 123,
+    "cost_fp_total": 17100,
+    "cost_fn_total": 307500,
+    "total_cost": 324600
+  },
+  "cost_fp": 150.0,
+  "cost_fn": 2500.0,
+  "label_delay_days": 14.0,
+  "trained_rows": 42988,
+  "analyst_rows": 0,
+  "drift_reference": {
+    "amount": {
+      "edges": [
+        60.85,
+        535.062,
+        736.0,
+        929.0040000000001,
+        1126.19,
+        1351.935,
+        1621.5620000000001,
+        1961.7330000000006,
+        2494.2259999999997,
+        3449.6140000000005,
+        36745.1
+      ],
+      "props": [
+        0.10000465246115195,
+        0.10000465246115195,
+        0.10000465246115195,
+        0.09995812784963246,
+        0.1000279147669117,
+        0.10000465246115195,
+        0.0999813901553922,
+        0.10000465246115195,
+        0.10000465246115195,
+        0.10000465246115195
+      ]
+    },
+    "amount_dev_from_avg": {
+      "edges": [
+        0.0807072032327587,
+        0.5689653426335809,
+        0.6870503636536572,
+        0.781947085034559,
+        0.8729549935875063,
+        0.9690809615684319,
+        1.0434388852051653,
+        1.1674750516948476,
+        1.3273554178058793,
+        1.596099264644774,
+        42.28227420923184
+      ],
+      "props": [
+        0.10000465246115195,
+        0.10000465246115195,
+        0.10000465246115195,
+        0.0999813901553922,
+        0.10000465246115195,
+        0.10000465246115195,
+        0.0999813901553922,
+        0.10000465246115195,
+        0.10000465246115195,
+        0.10000465246115195
+      ]
+    },
+    "tx_count_last_10min_cust": {
+      "edges": [
+        0.0,
+        7.0
+      ],
+      "props": [
+        1.0
+      ]
+    },
+    "tx_count_last_1h_cust": {
+      "edges": [
+        0.0,
+        9.0
+      ],
+      "props": [
+        1.0
+      ]
+    },
+    "tx_count_last_24h_cust": {
+      "edges": [
+        0.0,
+        1.0,
+        9.0
+      ],
+      "props": [
+        0.8669396110542477,
+        0.1330603889457523
+      ]
+    },
+    "amount_last_24h_cust": {
+      "edges": [
+        0.0,
+        873.3400000000003,
+        47588.68
+      ],
+      "props": [
+        0.899995347538848,
+        0.10000465246115195
+      ]
+    },
+    "customer_account_age_days": {
+      "edges": [
+        0.0,
+        118.0,
+        209.0,
+        292.0,
+        385.0,
+        480.0,
+        576.0,
+        667.0,
+        754.0,
+        850.0,
+        965.0
+      ],
+      "props": [
+        0.09942309481715828,
+        0.10046989857634689,
+        0.099632455568996,
+        0.09995812784963246,
+        0.10049316088210664,
+        0.09993486554387271,
+        0.0992835209825998,
+        0.10009770168419094,
+        0.10005117707267144,
+        0.10065599702242486
+      ]
+    },
+    "customer_tx_count_30d": {
+      "edges": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        16.0
+      ],
+      "props": [
+        0.03924350981669303,
+        0.1060761142644459,
+        0.17123383269749698,
+        0.1968456313389783,
+        0.17911975435005117,
+        0.135293570298688,
+        0.1721875872336466
+      ]
+    },
+    "customer_avg_amount_prior": {
+      "edges": [
+        138.56,
+        607.385,
+        811.5305,
+        1001.3418333333341,
+        1193.6853636363637,
+        1408.5883333333331,
+        1670.5556,
+        1987.4,
+        2464.107,
+        3314.158250000001,
+        36745.1
+      ],
+      "props": [
+        0.10000465246115195,
+        0.10000465246115195,
+        0.10000465246115195,
+        0.0999813901553922,
+        0.10000465246115195,
+        0.10000465246115195,
+        0.09995812784963246,
+        0.1000279147669117,
+        0.10000465246115195,
+        0.10000465246115195
+      ]
+    },
+    "customer_historical_fraud_rate": {
+      "edges": [
+        0.0,
+        1.0
+      ],
+      "props": [
+        1.0
+      ]
+    },
+    "customer_historical_chargebacks": {
+      "edges": [
+        0.0,
+        5.0
+      ],
+      "props": [
+        1.0
+      ]
+    },
+    "customer_return_rate_prior": {
+      "edges": [
+        0.0,
+        0.1111111111111111,
+        0.25,
+        1.0
+      ],
+      "props": [
+        0.7973620545268447,
+        0.0931887968735461,
+        0.10944914859960919
+      ]
+    },
+    "device_accounts_24h": {
+      "edges": [
+        0.0,
+        1.0,
+        12.0
+      ],
+      "props": [
+        0.8519121615334512,
+        0.1480878384665488
+      ]
+    },
+    "device_cards_24h": {
+      "edges": [
+        0.0,
+        1.0,
+        12.0
+      ],
+      "props": [
+        0.8519121615334512,
+        0.1480878384665488
+      ]
+    },
+    "device_tx_count_10min": {
+      "edges": [
+        0.0,
+        7.0
+      ],
+      "props": [
+        1.0
+      ]
+    },
+    "device_tx_count_1h": {
+      "edges": [
+        0.0,
+        20.0
+      ],
+      "props": [
+        1.0
+      ]
+    },
+    "device_tx_count_30d": {
+      "edges": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        7.0,
+        35.0
+      ],
+      "props": [
+        0.03419558946682795,
+        0.09935330789987903,
+        0.16334791104494278,
+        0.18923885735554108,
+        0.17190843956452964,
+        0.13036196147762166,
+        0.08588443286498558,
+        0.12570950032567227
+      ]
+    },
+    "device_historical_fraud_rate": {
+      "edges": [
+        0.0,
+        1.0
+      ],
+      "props": [
+        1.0
+      ]
+    },
+    "payment_accounts_count": {
+      "edges": [
+        0.0,
+        1.0,
+        8.0
+      ],
+      "props": [
+        0.02758909463105983,
+        0.9724109053689401
+      ]
+    },
+    "payment_tx_count_30d": {
+      "edges": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        7.0,
+        29.0
+      ],
+      "props": [
+        0.036475295431283146,
+        0.10074904624546385,
+        0.16392946868893646,
+        0.1891458081325021,
+        0.17158276728389318,
+        0.13033869917186192,
+        0.08588443286498558,
+        0.1218944821810738
+      ]
+    },
+    "payment_historical_chargeback_rate": {
+      "edges": [
+        0.0,
+        1.0
+      ],
+      "props": [
+        1.0
+      ]
+    },
+    "is_new_region_for_customer": {
+      "edges": [
+        0.0,
+        1.0
+      ],
+      "props": [
+        1.0
+      ]
+    },
+    "category_new_for_customer": {
+      "edges": [
+        0.0,
+        1.0
+      ],
+      "props": [
+        1.0
+      ]
+    },
+    "hour_of_day": {
+      "edges": [
+        0.0,
+        2.0,
+        4.0,
+        7.0,
+        9.0,
+        11.0,
+        14.0,
+        16.0,
+        19.0,
+        21.0,
+        23.0
+      ],
+      "props": [
+        0.08367451381780962,
+        0.08297664464501721,
+        0.12550013957383455,
+        0.0838140876523681,
+        0.08337210384293291,
+        0.12349958127849632,
+        0.08425607146180329,
+        0.12347631897273657,
+        0.08244161161254304,
+        0.12698892714245835
+      ]
+    },
+    "graph_component_accounts": {
+      "edges": [
+        1.0,
+        15.0
+      ],
+      "props": [
+        1.0
+      ]
+    },
+    "graph_component_devices": {
+      "edges": [
+        1.0,
+        8.0
+      ],
+      "props": [
+        1.0
+      ]
+    },
+    "graph_component_payments": {
+      "edges": [
+        1.0,
+        12.0
+      ],
+      "props": [
+        1.0
+      ]
+    },
+    "__score__": {
+      "edges": [
+        0.0,
+        0.0018547959724430313,
+        0.005277044854881266,
+        1.0
+      ],
+      "props": [
+        0.024750325662179766,
+        0.8330438558402085,
+        0.14220581849761182
+      ]
+    }
+  },
+  "trained_at": "2026-10-15T00:32:57.451112+00:00",
+  "dataset_note": "Synthetic dataset (app/data/generate_dataset.py). Metrics describe simulated ground truth, not a production benchmark."
+}
