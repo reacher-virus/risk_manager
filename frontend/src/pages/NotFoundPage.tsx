@@ -1,6 +1,6 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { SITE, mailto } from "@/lib/site";
+import { SITE } from "@/lib/site";
 
 /** Custom 404 for any unknown route. */
 export function NotFoundPage({ signedIn }: { signedIn: boolean }) {
