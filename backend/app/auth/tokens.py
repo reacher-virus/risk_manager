@@ -69,7 +69,7 @@ def cookie_names() -> dict:
 def set_auth_cookies(resp: Response, access: str, refresh: str, session_id: str, access_ttl_s: int, refresh_ttl_s: int) -> None:
     n, common = cookie_names(), {"secure": cfg.COOKIE_SECURE, "domain": cfg.COOKIE_DOMAIN}
     resp.set_cookie(n["access"], access, max_age=access_ttl_s, path="/", httponly=True, samesite=cfg.COOKIE_SAMESITE, **common)
-    resp.set_cookie(n["refresh"], refresh, max_age=refresh_ttl_s, path=cfg.COOKIE_REFRESH_PATH, httponly=True, samesite="strict", **common)
+    resp.set_cookie(n["refresh"], refresh, max_age=refresh_ttl_s, path=cfg.COOKIE_REFRESH_PATH, httponly=True, samesite=cfg.COOKIE_SAMESITE, **common)
     # the CSRF token must be readable by the page's JavaScript so it can echo it in a header; it is useless without the HttpOnly cookies
     resp.set_cookie(n["csrf"], csrf_for(session_id), max_age=refresh_ttl_s, path="/", httponly=False, samesite=cfg.COOKIE_SAMESITE, **common)
 
@@ -77,5 +77,5 @@ def set_auth_cookies(resp: Response, access: str, refresh: str, session_id: str,
 def clear_auth_cookies(resp: Response) -> None:
     n, common = cookie_names(), {"secure": cfg.COOKIE_SECURE, "domain": cfg.COOKIE_DOMAIN}
     resp.delete_cookie(n["access"], path="/", httponly=True, samesite=cfg.COOKIE_SAMESITE, **common)
-    resp.delete_cookie(n["refresh"], path=cfg.COOKIE_REFRESH_PATH, httponly=True, samesite="strict", **common)
+    resp.delete_cookie(n["refresh"], path=cfg.COOKIE_REFRESH_PATH, httponly=True, samesite=cfg.COOKIE_SAMESITE, **common)
     resp.delete_cookie(n["csrf"], path="/", samesite=cfg.COOKIE_SAMESITE, **common)
