@@ -10,6 +10,7 @@ Training + evaluation pipeline.
 Run:  python -m app.ml.train
 """
 import json
+import gc
 
 import joblib
 import numpy as np
@@ -108,20 +109,38 @@ def main(include_feedback: bool = False) -> dict:
 
     candidates = {
         "logistic_regression": make_pipeline(StandardScaler(), LogisticRegression(max_iter=2000, class_weight="balanced")),
-        "random_forest": RandomForestClassifier(n_estimators=300, max_depth=12, min_samples_leaf=5,
-                                                class_weight="balanced_subsample", n_jobs=-1, random_state=42),
+        "random_forest": RandomForestClassifier(n_estimators=150, max_depth=12, min_samples_leaf=5,
+                                                class_weight="balanced_subsample", n_jobs=1, random_state=42),
     }
     if XGBClassifier:
-        candidates["xgboost"] = XGBClassifier(n_estimators=300, max_depth=5, learning_rate=0.08, subsample=0.8,
-                                              colsample_bytree=0.8, scale_pos_weight=spw, eval_metric="aucpr",
-                                              random_state=42, n_jobs=-1)
+        candidates["xgboost"] = XGBClassifier(n_estimators=150, max_depth=5, learning_rate=0.08, subsample=0.8,
+                                              colsample_bytree=0.8, scale_pos_weight=spw, eval_metric="aucpr", tree_method="hist",
+                                              random_state=42, n_jobs=1)
     val_pr = {}
-    for name, m in candidates.items():
-        m.fit(Xtr, ytr)
-        val_pr[name] = float(average_precision_score(yv, m.predict_proba(Xv)[:, 1]))
-        print(f"  [val] {name}: PR-AUC {val_pr[name]:.4f}")
-    best_name = max(val_pr, key=val_pr.get)
-    base = candidates[best_name]
+    best_name = None
+    best_score = -1.0
+    base = None
+
+    for name, model in candidates.items():
+        model.fit(Xtr, ytr)
+        score = float(
+            average_precision_score(yv, model.predict_proba(Xv)[:, 1])
+        )
+        val_pr[name] = score
+        print(f"  [val] {name}: PR-AUC {score:.4f}")
+
+        if score > best_score:
+            best_name = name
+            best_score = score
+            base = model
+
+        del model
+        gc.collect()
+
+    # Release candidate references to non-selected models.
+    candidates.clear()
+    gc.collect()
+
     print(f"Best on validation PR-AUC: {best_name}")
 
     # calibration on first half of validation, threshold on second half
@@ -176,3 +195,4 @@ def main(include_feedback: bool = False) -> dict:
 if __name__ == "__main__":
     import sys
     main(include_feedback="--include-feedback" in sys.argv)
+
