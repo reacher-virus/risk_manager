@@ -13,6 +13,8 @@ log = logging.getLogger("risk.mail")
 OUTBOX: deque = deque(maxlen=200)
 
 BREVO_URL = "https://api.brevo.com/v3/smtp/email"
+def smtp_configured() -> bool:
+    return bool(getattr(cfg, "BREVO_API_KEY", ""))
 
 
 def send_email(to: str, subject: str, body: str) -> None:
