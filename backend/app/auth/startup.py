@@ -24,7 +24,7 @@ def run_startup_checks() -> None:
         if not cfg.COOKIE_SECURE:
             problems.append("COOKIE_SECURE must be true")
         if not mailer.smtp_configured():
-            problems.append("SMTP_HOST must be configured (one-time codes are sent by email)")
+            problems.append("BREVO_API_KEY must be configured (one-time codes are sent by email)")
         if not cfg.FRONTEND_URL.startswith("https://") or any(not o.startswith("https://") for o in cfg.CORS_ORIGINS):
             problems.append("FRONTEND_URL and CORS_ORIGINS must be https:// URLs")
         if not cfg.ALLOWED_HOSTS or "*" in cfg.ALLOWED_HOSTS:
