@@ -18,6 +18,8 @@ def smtp_configured() -> bool:
 
 
 def send_email(to: str, subject: str, body: str) -> None:
+    if "\r" in subject or "\n" in subject:
+        raise ValueError("Invalid email subject")
     api_key = getattr(cfg, "BREVO_API_KEY", "")
 
     if not api_key:

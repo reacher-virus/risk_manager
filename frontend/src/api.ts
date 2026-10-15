@@ -4,7 +4,9 @@ import type {
   AdminUser, CaptchaChallenge, Challenge, Me, User,
 } from './types'
 
-export const API_BASE: string = import.meta.env.VITE_API_BASE || 'http://localhost:8000'
+export const API_BASE: string =
+  import.meta.env.VITE_API_BASE ||
+  (import.meta.env.DEV ? 'http://localhost:8000' : '/api')
 export const SESSION_EXPIRED_EVENT = 'risk:session-expired'
 
 export class ApiError extends Error {

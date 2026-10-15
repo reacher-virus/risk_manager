@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://risk-manager-6zxj.onrender.com/:path*"
+    }
+  ]
+}

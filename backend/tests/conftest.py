@@ -63,3 +63,8 @@ def _capture_test_emails(monkeypatch, request):
 
     yield
     mailer.OUTBOX.clear()
+
+@pytest.fixture(scope="session", autouse=True)
+def initialize_test_database():
+    from app.core.db import init_db
+    init_db()

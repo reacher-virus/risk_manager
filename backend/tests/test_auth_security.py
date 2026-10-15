@@ -325,7 +325,7 @@ def test_production_refuses_to_start_without_a_secret_or_with_unsafe_settings(mo
     with pytest.raises(RuntimeError) as e:
         run_startup_checks()
     msg = str(e.value)
-    assert all(x in msg for x in ("FORCE_HTTPS", "COOKIE_SECURE", "SMTP_HOST", "ALLOWED_HOSTS"))
+    assert all(x in msg for x in ("FORCE_HTTPS", "COOKIE_SECURE", "BREVO_API_KEY", "ALLOWED_HOSTS"))
 
 
 def test_wildcard_cors_with_credentials_is_refused(monkeypatch):

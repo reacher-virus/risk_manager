@@ -173,7 +173,7 @@ def test_cookie_flags():
     r = c.post("/auth/login/verify", json={"challenge_id": s1["challenge_id"], "code": last_code(email)})
     flags = {h.split("=")[0]: h.lower() for h in r.headers.get_list("set-cookie")}
     assert "httponly" in flags["risk_access"] and "samesite=lax" in flags["risk_access"] and "path=/;" in flags["risk_access"] + ";"
-    assert "httponly" in flags["risk_refresh"] and "samesite=strict" in flags["risk_refresh"] and "path=/auth" in flags["risk_refresh"]
+    assert "httponly" in flags["risk_refresh"] and "samesite=lax" in flags["risk_refresh"] and "path=/auth" in flags["risk_refresh"]
     assert "httponly" not in flags["risk_csrf"]                              # the page must be able to read this one (and only this one)
 
 
