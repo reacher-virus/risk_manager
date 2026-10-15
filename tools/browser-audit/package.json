@@ -1,0 +1,16 @@
+{
+  "name": "risk-manager-browser-audit",
+  "private": true,
+  "type": "module",
+  "description": "Real-browser checks for the dashboard: horizontal overflow at 6 widths, interaction behaviours, and CSP violations. Not part of the app.",
+  "scripts": {
+    "audit": "node audit.mjs",
+    "behave": "node behave.mjs",
+    "csp:serve": "node static-csp.mjs",
+    "csp": "node csp-check.mjs"
+  },
+  "dependencies": {
+    "@sparticuz/chromium": "^153.0.0",
+    "puppeteer-core": "^25.13.0"
+  }
+}

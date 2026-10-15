@@ -1,0 +1,19 @@
+# Production reverse proxy: automatic HTTPS (Let's Encrypt for a real domain, Caddy's local CA for "localhost").
+# The dashboard and the API share ONE origin (https://DOMAIN and https://DOMAIN/api), so cookies stay first-party
+# (SameSite works, no CORS needed) and the backend is never exposed directly.
+{$DOMAIN:localhost} {
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=63072000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy no-referrer
+		-Server
+	}
+	handle_path /api/* {
+		reverse_proxy backend:8000
+	}
+	handle {
+		reverse_proxy frontend:80
+	}
+}

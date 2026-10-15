@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.coverage
+
+# Node
+node_modules/
+frontend/dist/
+
+# Generated artifacts: recreate with `make pipeline`
+backend/data/raw/*
+backend/data/processed/*
+backend/data/models/*
+backend/data/*.db
+!backend/data/raw/.gitkeep
+!backend/data/processed/.gitkeep
+!backend/data/models/.gitkeep
+
+# Local config / logs
+.env
+*.log
+
+# Secrets (never commit)
+backend/data/.jwt_secret
+*.pem
+*.key
+.env.*
+!.env.example
+certs/
+
+frontend/dist-csp/
+tools/browser-audit/node_modules/
+tools/browser-audit/shots/
